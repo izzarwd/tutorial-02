@@ -31,13 +31,27 @@ public class PageController {
 		return "hello2";
 	}
 	
-	@RequestMapping("/calcu/{angka1}/{angka2}")
-	public String calcu(@PathVariable("angka1") int angka1, @PathVariable("angka2") int angka2, Model model) {
+	@RequestMapping("/latCalcu/{angka1}/{angka2}")
+	public String latCalcu(@PathVariable("angka1") int angka1, @PathVariable("angka2") int angka2, Model model) {
 		
 		model.addAttribute("angka1",angka1);
 		model.addAttribute("angka2",angka2);
 		int total=angka1+angka2;
 		model.addAttribute("total",total);
+		String kata="";
+		
+		String[] terbilang= {"","Satu","Dua","Tiga","Empat","Lima","Enam","Tujuh","Delapan","Sembilan","Sepuluh","Sebelas"};
+		if(total < 12) {
+			kata=terbilang[total]; 
+		}else
+		if(total >=12 && total <=19){
+			kata=terbilang[total%10]+" Belas";
+		}else
+		if(total >=20 && total <=99){
+			kata=terbilang[total/10]+" puluh"+terbilang[total%10];
+		}
+		
+		model.addAttribute("kata",kata);
 		
 		return "calcu";
 	}
