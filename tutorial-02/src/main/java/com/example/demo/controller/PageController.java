@@ -49,6 +49,31 @@ public class PageController {
 		}else
 		if(total >=20 && total <=99){
 			kata=terbilang[total/10]+" puluh"+terbilang[total%10];
+		}else
+		if(total >=100 && total <=199){
+			int ang1=total-100;
+			if(ang1>=20){
+				kata="Seratus "+ terbilang[ang1/10]+" Puluh "+terbilang[ang1%10];
+			}else
+			if(ang1>=12 && ang1<=19){
+				kata="Seratus "+terbilang[ang1%10]+" Belas";
+			}else
+			{
+				kata="Seratus "+terbilang[ang1];
+			}
+		}else
+		if(total >=200 && total <=999){
+			int ang2=total/100;
+			int ang3=total%100;
+			if(ang3>=20){
+				kata=terbilang[ang2]+" Ratus "+ terbilang[ang3/10]+" Puluh "+terbilang[ang3%10];
+			}else
+			if(ang3>=12 && ang3<=19){
+				kata=terbilang[ang2]+" Ratus "+terbilang[ang3%10]+" Belas";
+			}else
+			{
+				kata=terbilang[ang2]+" Ratus "+terbilang[ang3];
+			}
 		}
 		
 		model.addAttribute("kata",kata);
